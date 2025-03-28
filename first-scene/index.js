@@ -1,4 +1,5 @@
-import * as THREE from "https://unpkg.com/three@0.174.0/build/three.module.js";
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 // 创建一个场景
 const scene = new THREE.Scene();
@@ -44,8 +45,16 @@ const scene = new THREE.Scene();
 
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(width, height);
-  // 用渲染器渲染场景和相机
-  renderer.render(scene, camera);
+
+  function render() {
+    // 用渲染器渲染场景和相机
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+  render();
+
   // 将渲染器的canvas元素添加到页面中
   document.body.append(renderer.domElement);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
 }
