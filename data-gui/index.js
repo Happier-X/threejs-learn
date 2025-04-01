@@ -58,4 +58,30 @@ const gui = new GUI();
   document.body.append(renderer.domElement);
 
   const controls = new OrbitControls(camera, renderer.domElement);
+
+  const otherFolder = gui.addFolder("其他控件类型");
+
+  const obj = {
+    obj1: "你好",
+    obj2: false,
+    obj3: 0,
+    obj4: "111",
+    obj5: "Bbb",
+    logic: function () {
+      console.log("执行一段逻辑！");
+    },
+  };
+
+  otherFolder.add(obj, "obj1"); // 输入框
+  otherFolder.add(obj, "obj2"); // 选择框
+  otherFolder.add(obj, "obj3").min(-10).max(10).step(0.5); // range范围
+  // 也可以这样写
+  otherFolder.add(obj, "obj3", -10, 10, 0.5); // min, max, step
+  otherFolder.add(obj, "obj4", ["111", "222", "333"]); // 下拉列表
+  otherFolder.add(obj, "obj5", { Aaa: 0, Bbb: 0.1, Ccc: 5 }); // 下拉列表
+  otherFolder.add(obj, "logic"); // 执行逻辑
+  // 通过onChange监听值的变化来修改三维场景中的参数
+  otherFolder.add(obj, "obj1").onChange((value) => {
+    console.log(value);
+  });
 }
