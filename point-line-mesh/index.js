@@ -1,16 +1,16 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import line from "./line.js";
+import mesh from "./mesh2.js";
 
 const scene = new THREE.Scene();
-scene.add(line);
+scene.add(mesh);
 
 const pointLight = new THREE.PointLight(0xffffff, 10000);
 pointLight.position.set(80, 80, 80);
 scene.add(pointLight);
 
-// const axesHelper = new THREE.AxesHelper(200);
-// scene.add(axesHelper);
+const axesHelper = new THREE.AxesHelper(200);
+scene.add(axesHelper);
 
 const width = window.innerWidth;
 const height = window.innerHeight;
